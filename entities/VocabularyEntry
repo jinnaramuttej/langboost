@@ -1,0 +1,48 @@
+{
+  "name": "VocabularyEntry",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "definition": {
+      "type": "string"
+    },
+    "translation": {
+      "type": "string"
+    },
+    "example_sentence": {
+      "type": "string"
+    },
+    "phonetic": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "is_mastered": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "word"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

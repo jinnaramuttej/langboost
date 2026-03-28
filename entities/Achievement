@@ -1,0 +1,32 @@
+{
+  "name": "Achievement",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "xp_bonus": {
+      "type": "number",
+      "default": 0
+    },
+    "condition_type": {
+      "type": "string"
+    },
+    "condition_value": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "code",
+    "title"
+  ]
+}

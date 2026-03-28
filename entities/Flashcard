@@ -1,0 +1,61 @@
+{
+  "name": "Flashcard",
+  "type": "object",
+  "properties": {
+    "front": {
+      "type": "string",
+      "description": "Front side text"
+    },
+    "back": {
+      "type": "string",
+      "description": "Back side text"
+    },
+    "language": {
+      "type": "string"
+    },
+    "deck_name": {
+      "type": "string",
+      "default": "Default"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "example_sentence": {
+      "type": "string"
+    },
+    "ease_factor": {
+      "type": "number",
+      "default": 2.5
+    },
+    "interval_days": {
+      "type": "number",
+      "default": 1
+    },
+    "repetitions": {
+      "type": "number",
+      "default": 0
+    },
+    "next_review_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "front",
+    "back"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

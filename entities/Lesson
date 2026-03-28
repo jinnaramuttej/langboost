@@ -1,0 +1,78 @@
+{
+  "name": "Lesson",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Lesson title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description"
+    },
+    "language": {
+      "type": "string",
+      "description": "Target language"
+    },
+    "difficulty_level": {
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ],
+      "default": "A1"
+    },
+    "lesson_type": {
+      "type": "string",
+      "enum": [
+        "vocabulary",
+        "grammar",
+        "listening",
+        "reading",
+        "speaking"
+      ],
+      "default": "vocabulary"
+    },
+    "content": {
+      "type": "string",
+      "description": "JSON content blob"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 10
+    },
+    "xp_reward": {
+      "type": "number",
+      "default": 50
+    },
+    "thumbnail_url": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string",
+      "description": "JSON array of tags"
+    },
+    "is_published": {
+      "type": "boolean",
+      "default": true
+    },
+    "view_count": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "title",
+    "language",
+    "difficulty_level",
+    "lesson_type"
+  ]
+}

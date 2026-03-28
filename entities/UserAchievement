@@ -1,0 +1,32 @@
+{
+  "name": "UserAchievement",
+  "type": "object",
+  "properties": {
+    "achievement_id": {
+      "type": "string"
+    },
+    "achievement_title": {
+      "type": "string"
+    },
+    "achievement_icon": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "achievement_id"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
