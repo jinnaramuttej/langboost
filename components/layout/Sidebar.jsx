@@ -68,16 +68,15 @@ export default function Sidebar({ isOpen, onClose, user }) {
 
         <div className="flex items-center gap-3 border-b border-sidebar-border px-4 py-3">
           <div
-            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-xs font-semibold text-foreground"
-            style={{ background: "#1A1A1A", borderColor: "#333" }}
+            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-sidebar-border bg-sidebar-accent text-xs font-semibold text-sidebar-foreground"
           >
             {initials}
           </div>
           <div className="min-w-0">
-            <p className="truncate text-[13px] font-medium" style={{ color: "#F5F5F5" }}>
+            <p className="truncate text-[13px] font-medium text-sidebar-foreground">
               {displayName}
             </p>
-            <p className="text-[11px]" style={{ color: "#888" }}>
+            <p className="text-[11px] text-muted-foreground">
               Streak {streak} days | Lv. {level}
             </p>
           </div>
@@ -108,10 +107,10 @@ export default function Sidebar({ isOpen, onClose, user }) {
         </nav>
 
         <div className="border-t border-sidebar-border px-4 py-3">
-          <p className="mb-1.5 text-[11px]" style={{ color: "#888" }}>
+          <p className="mb-1.5 text-[11px] text-muted-foreground">
             {XP_CURRENT.toLocaleString()} / {XP_NEXT.toLocaleString()} XP to Level {XP_LEVEL}
           </p>
-          <div className="h-[4px] w-full rounded-full bg-[#222]">
+          <div className="h-[4px] w-full rounded-full bg-sidebar-accent">
             <div className="h-full rounded-full bg-primary" style={{ width: `${XP_PCT}%` }} />
           </div>
         </div>

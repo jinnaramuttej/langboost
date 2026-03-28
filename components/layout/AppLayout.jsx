@@ -30,7 +30,7 @@ export default function AppLayout({ children }) {
 
       {/* Main content */}
       <main className="lg:ml-[260px] pt-14 lg:pt-0 min-h-screen">
-        <div className="p-4 md:p-6 lg:p-8 max-w-7xl">
+        <div className="mx-auto w-full max-w-[1600px] p-4 md:p-6 lg:p-8 xl:px-10 2xl:px-12">
           {children}
         </div>
       </main>
