@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Bot, Loader2, Mic, MicOff, Send, Sparkles, Volume2, X } from "lucide-react";
+import { Bot, Loader2, Mic, MicOff, Send, Sparkles, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { speakText } from "@/src/lib/speech";
+import { startVoiceInput, stopVoiceInput } from "@/src/lib/voice-input";
 
 const languageOptions = [
   { label: "English", value: "English", recognition: "en-US" },
@@ -30,6 +31,7 @@ export default function FloatingAssistant() {
   const [language, setLanguage] = useState("English");
   const [isListening, setIsListening] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [voicePending, setVoicePending] = useState(false);
   const [error, setError] = useState("");
   const recognitionRef = useRef(null);
   const messagesEndRef = useRef(null);
@@ -40,7 +42,7 @@ export default function FloatingAssistant() {
 
   useEffect(() => {
     return () => {
-      recognitionRef.current?.stop?.();
+      stopVoiceInput(recognitionRef);
     };
   }, []);
 
@@ -80,7 +82,8 @@ export default function FloatingAssistant() {
         throw new Error(data.error || "Assistant request failed");
       }
 
-      setMessages((prev) => [...prev, { role: "assistant", content: data.reply, model: data.model }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
+      void speakText(data.reply, language);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Assistant request failed";
       setError(message);
@@ -96,46 +99,42 @@ export default function FloatingAssistant() {
     }
   };
 
-  const toggleListening = () => {
+  const toggleListening = async () => {
+    if (voicePending) return;
+
     if (isListening) {
-      recognitionRef.current?.stop?.();
+      stopVoiceInput(recognitionRef);
       setIsListening(false);
       return;
     }
 
-    if (typeof window === "undefined" || !("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
-      setError("Voice input is not supported in this browser.");
-      return;
-    }
-
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.lang = currentRecognitionLanguage;
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-    recognition.continuous = false;
-
-    recognition.onresult = (event) => {
-      const transcript = event.results?.[0]?.[0]?.transcript || "";
-      setIsListening(false);
-      if (transcript.trim()) {
-        void sendToAssistant(transcript);
-      }
-    };
-
-    recognition.onerror = (event) => {
-      setIsListening(false);
-      setError(event.error ? `Voice input failed: ${event.error}` : "Voice input failed.");
-    };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
-
-    recognitionRef.current = recognition;
+    setVoicePending(true);
     setError("");
-    setIsListening(true);
-    recognition.start();
+
+    try {
+      await startVoiceInput({
+        language: currentRecognitionLanguage,
+        recognitionRef,
+        onStart: () => {
+          setIsListening(true);
+        },
+        onResult: (transcript) => {
+          setIsListening(false);
+          void sendToAssistant(transcript);
+        },
+        onError: (message) => {
+          setIsListening(false);
+          if (message) {
+            setError(message);
+          }
+        },
+        onEnd: () => {
+          setIsListening(false);
+        },
+      });
+    } finally {
+      setVoicePending(false);
+    }
   };
 
   return (
@@ -183,21 +182,10 @@ export default function FloatingAssistant() {
             <div className="max-h-[380px] space-y-3 overflow-y-auto px-4 py-4">
               {messages.map((message, index) => (
                 <div key={`${message.role}-${index}`} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-                  <div className={`max-w-[88%] rounded-2xl px-3 py-2 ${message.role === "user" ? "bg-primary text-primary-foreground" : "border border-border bg-background text-foreground"}`}>
+                  <div
+                    className={`max-w-[88%] rounded-2xl px-3 py-2 ${message.role === "user" ? "bg-primary text-primary-foreground" : "border border-border bg-background text-foreground"}`}
+                  >
                     <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
-                    {message.role === "assistant" && (
-                      <div className="mt-2 flex items-center justify-between gap-2">
-                        <button
-                          onClick={() => {
-                            void speakText(message.content, language);
-                          }}
-                          className="rounded-md p-1 text-muted-foreground transition-colors hover:text-primary"
-                        >
-                          <Volume2 className="h-3.5 w-3.5" />
-                        </button>
-                        {message.model && <span className="text-[10px] text-muted-foreground">{message.model}</span>}
-                      </div>
-                    )}
                   </div>
                 </div>
               ))}
@@ -223,8 +211,10 @@ export default function FloatingAssistant() {
                   size="icon"
                   className="h-10 w-10"
                   onClick={toggleListening}
+                  disabled={voicePending}
+                  aria-label={isListening ? "Stop voice input" : "Start voice input"}
                 >
-                  {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+                  {voicePending ? <Loader2 className="h-4 w-4 animate-spin" /> : isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
                 </Button>
                 <Input
                   value={input}

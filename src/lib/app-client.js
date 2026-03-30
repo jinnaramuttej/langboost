@@ -1,12 +1,49 @@
 import { initialAppData } from "@/src/lib/mock-data";
 
 const STORAGE_KEY = "languageboost.demo-data.v1";
+const AUTH_CHANGE_EVENT = "languageboost-auth-changed";
+const DEFAULT_DEMO_PASSWORD_HASH = "ZGVtbzEyMzQ=";
 
 let memoryStore = structuredClone(initialAppData);
 
 const clone = (value) => structuredClone(value);
 
 const hasWindow = () => typeof window !== "undefined" && !!window.localStorage;
+
+const cloneUser = (user) => ({
+  ...user,
+  passwordHash: user?.passwordHash || DEFAULT_DEMO_PASSWORD_HASH,
+  role: user?.role || "user",
+});
+
+const normalizeStore = (store) => {
+  const users = (store?.users || []).map(cloneUser);
+  const currentUserId = store?.currentUser?.id;
+  const currentUser = currentUserId
+    ? cloneUser(users.find((user) => user.id === currentUserId) || store.currentUser || users[0])
+    : cloneUser(store?.currentUser || users[0] || {});
+
+  return {
+    ...structuredClone(initialAppData),
+    ...store,
+    users,
+    currentUser,
+    session: store?.session || null,
+    analyticsEvents: Array.isArray(store?.analyticsEvents) ? store.analyticsEvents : [],
+  };
+};
+
+const notifyAuthChange = () => {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent(AUTH_CHANGE_EVENT));
+  }
+};
+
+const makeSession = (userId) => ({
+  userId,
+  token: `${userId}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
+  expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+});
 
 const readStore = () => {
   if (!hasWindow()) {
@@ -15,18 +52,18 @@ const readStore = () => {
 
   const raw = window.localStorage.getItem(STORAGE_KEY);
   if (!raw) {
-    const seeded = clone(initialAppData);
+    const seeded = normalizeStore(clone(initialAppData));
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
     memoryStore = clone(seeded);
     return seeded;
   }
 
   try {
-    const parsed = JSON.parse(raw);
+    const parsed = normalizeStore(JSON.parse(raw));
     memoryStore = clone(parsed);
     return parsed;
   } catch {
-    const seeded = clone(initialAppData);
+    const seeded = normalizeStore(clone(initialAppData));
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
     memoryStore = clone(seeded);
     return seeded;
@@ -34,9 +71,10 @@ const readStore = () => {
 };
 
 const writeStore = (nextStore) => {
-  memoryStore = clone(nextStore);
+  const normalizedStore = normalizeStore(nextStore);
+  memoryStore = clone(normalizedStore);
   if (hasWindow()) {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextStore));
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizedStore));
   }
 };
 
@@ -270,6 +308,52 @@ export const appClient = {
   auth: {
     async me() {
       const store = readStore();
+      const session = store.session;
+      if (!session) {
+        return null;
+      }
+
+      if (new Date(session.expiresAt).getTime() <= Date.now()) {
+        store.session = null;
+        writeStore(store);
+        notifyAuthChange();
+        return null;
+      }
+
+      const user = store.users.find((item) => item.id === session.userId);
+      if (!user) {
+        store.session = null;
+        writeStore(store);
+        notifyAuthChange();
+        return null;
+      }
+
+      if (store.currentUser?.id !== user.id) {
+        store.currentUser = cloneUser(user);
+        writeStore(store);
+      }
+
+      return clone(cloneUser(user));
+    },
+
+    async signIn({ email, password }) {
+      const store = readStore();
+      const normalizedEmail = String(email || "").trim().toLowerCase();
+      const passwordHash = typeof btoa === "function" ? btoa(password) : DEFAULT_DEMO_PASSWORD_HASH;
+      const user = store.users.find(
+        (candidate) =>
+          candidate?.email?.toLowerCase() === normalizedEmail &&
+          (candidate?.passwordHash || DEFAULT_DEMO_PASSWORD_HASH) === passwordHash
+      );
+
+      if (!user) {
+        return null;
+      }
+
+      store.currentUser = cloneUser(user);
+      store.session = makeSession(user.id);
+      writeStore(store);
+      notifyAuthChange();
       return clone(store.currentUser);
     },
 
@@ -277,10 +361,15 @@ export const appClient = {
       const store = readStore();
       updateCurrentUserRecord(store, data);
       writeStore(store);
+      notifyAuthChange();
       return clone(store.currentUser);
     },
 
     logout(redirectUrl) {
+      const store = readStore();
+      store.session = null;
+      writeStore(store);
+      notifyAuthChange();
       if (typeof window !== "undefined") {
         window.location.assign(redirectUrl || "/");
       }
@@ -288,7 +377,7 @@ export const appClient = {
 
     redirectToLogin(redirectUrl) {
       if (typeof window !== "undefined") {
-        window.location.assign(redirectUrl || "/");
+        window.location.assign(redirectUrl || "/auth/signin");
       }
     },
   },
@@ -321,9 +410,12 @@ export const appClient = {
 
   system: {
     async resetDemoData() {
-      const seeded = clone(initialAppData);
+      const seeded = normalizeStore(clone(initialAppData));
       writeStore(seeded);
+      notifyAuthChange();
       return seeded;
     },
   },
 };
+
+export { AUTH_CHANGE_EVENT };

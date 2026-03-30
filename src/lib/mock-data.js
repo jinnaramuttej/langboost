@@ -1,4 +1,5 @@
 const now = new Date();
+const demoPasswordHash = "ZGVtbzEyMzQ=";
 
 const isoDaysFromNow = (days) => {
   const date = new Date(now);
@@ -19,6 +20,8 @@ export const initialAppData = {
     id: "user-1",
     email: "alex@languageboost.app",
     full_name: "Alex Carter",
+    passwordHash: demoPasswordHash,
+    role: "admin",
     bio: "Learning one useful phrase at a time.",
     native_language: "English",
     target_languages: "Spanish, French, Japanese",
@@ -35,6 +38,8 @@ export const initialAppData = {
       id: "user-1",
       email: "alex@languageboost.app",
       full_name: "Alex Carter",
+      passwordHash: demoPasswordHash,
+      role: "admin",
       streak_count: 7,
       total_xp: 1240,
       current_level: 5,
@@ -44,6 +49,8 @@ export const initialAppData = {
       id: "user-2",
       email: "maria@example.com",
       full_name: "Maria Silva",
+      passwordHash: demoPasswordHash,
+      role: "user",
       streak_count: 24,
       total_xp: 1980,
       current_level: 7,
@@ -53,6 +60,8 @@ export const initialAppData = {
       id: "user-3",
       email: "james@example.com",
       full_name: "James Lee",
+      passwordHash: demoPasswordHash,
+      role: "user",
       streak_count: 14,
       total_xp: 1750,
       current_level: 6,
@@ -62,6 +71,8 @@ export const initialAppData = {
       id: "user-4",
       email: "yuki@example.com",
       full_name: "Yuki Tanaka",
+      passwordHash: demoPasswordHash,
+      role: "user",
       streak_count: 10,
       total_xp: 1410,
       current_level: 5,
@@ -71,6 +82,8 @@ export const initialAppData = {
       id: "user-5",
       email: "sofia@example.com",
       full_name: "Sofia Weber",
+      passwordHash: demoPasswordHash,
+      role: "user",
       streak_count: 5,
       total_xp: 980,
       current_level: 4,

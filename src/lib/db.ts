@@ -11,6 +11,7 @@ import type {
   ProgressStatus,
   Session,
   User,
+  UserRole,
   UserProgress,
   VocabularyEntry,
 } from "@/types";
@@ -27,6 +28,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const LEVELS: Level[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
 const LESSON_TYPES: LessonType[] = ["vocabulary", "grammar", "listening", "reading", "speaking"];
 const PROGRESS_STATUSES: ProgressStatus[] = ["not_started", "in_progress", "completed"];
+const USER_ROLES: UserRole[] = ["admin", "user"];
 
 const isLevel = (value: unknown): value is Level =>
   typeof value === "string" && LEVELS.some((level) => level === value);
@@ -36,6 +38,9 @@ const isLessonType = (value: unknown): value is LessonType =>
 
 const isProgressStatus = (value: unknown): value is ProgressStatus =>
   typeof value === "string" && PROGRESS_STATUSES.some((status) => status === value);
+
+const isUserRole = (value: unknown): value is UserRole =>
+  typeof value === "string" && USER_ROLES.some((role) => role === value);
 
 const toStringArray = (value: unknown): string[] =>
   Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
@@ -49,6 +54,35 @@ const withRole = (user: User): User => {
     return { ...user, role: "admin" };
   }
   return { ...user, role: "user" };
+};
+
+const normalizeUser = (value: unknown): User => {
+  if (!isRecord(value) || typeof value.id !== "string" || typeof value.email !== "string") {
+    return withRole({
+      id: `user-${Date.now()}`,
+      email: "unknown@languageboost.app",
+    });
+  }
+
+  return withRole({
+    id: value.id,
+    email: value.email,
+    role: isUserRole(value.role) ? value.role : undefined,
+    name: typeof value.name === "string" ? value.name : undefined,
+    full_name: typeof value.full_name === "string" ? value.full_name : undefined,
+    passwordHash: typeof value.passwordHash === "string" ? value.passwordHash : undefined,
+    bio: typeof value.bio === "string" ? value.bio : undefined,
+    native_language: typeof value.native_language === "string" ? value.native_language : undefined,
+    target_languages: typeof value.target_languages === "string" ? value.target_languages : undefined,
+    streak_count: typeof value.streak_count === "number" ? value.streak_count : undefined,
+    longest_streak: typeof value.longest_streak === "number" ? value.longest_streak : undefined,
+    total_xp: typeof value.total_xp === "number" ? value.total_xp : undefined,
+    current_level: typeof value.current_level === "number" ? value.current_level : undefined,
+    daily_goal_minutes: typeof value.daily_goal_minutes === "number" ? value.daily_goal_minutes : undefined,
+    createdAt: typeof value.createdAt === "string" ? value.createdAt : undefined,
+    created_date: typeof value.created_date === "string" ? value.created_date : undefined,
+    updated_date: typeof value.updated_date === "string" ? value.updated_date : undefined,
+  });
 };
 
 const normalizeLesson = (value: unknown): Lesson => {
@@ -111,8 +145,8 @@ const normalizeUserProgress = (value: unknown): UserProgress => {
 };
 
 const createSeedStore = (): AppStore => ({
-  currentUser: withRole(clone(initialAppData.currentUser)),
-  users: clone(initialAppData.users).map(withRole),
+  currentUser: normalizeUser(clone(initialAppData.currentUser)),
+  users: clone(initialAppData.users).map(normalizeUser),
   lessons: clone(initialAppData.lessons).map(normalizeLesson),
   userProgress: clone(initialAppData.userProgress).map(normalizeUserProgress),
   flashcards: clone(initialAppData.flashcards),
@@ -144,8 +178,8 @@ const readStore = (): AppStore => {
     const nextStore: AppStore = {
       ...seeded,
       ...parsed,
-      currentUser: withRole({ ...seeded.currentUser, ...parsed?.currentUser }),
-      users: Array.isArray(parsed?.users) ? parsed.users.map((user: User) => withRole({ ...user })) : seeded.users,
+      currentUser: normalizeUser({ ...seeded.currentUser, ...parsed?.currentUser }),
+      users: Array.isArray(parsed?.users) ? parsed.users.map((user: unknown) => normalizeUser(user)) : seeded.users,
       lessons: Array.isArray(parsed?.lessons) ? parsed.lessons.map((lesson: unknown) => normalizeLesson(lesson)) : seeded.lessons,
       userProgress: Array.isArray(parsed?.userProgress) ? parsed.userProgress.map((item: unknown) => normalizeUserProgress(item)) : seeded.userProgress,
       flashcards: Array.isArray(parsed?.flashcards) ? parsed.flashcards : seeded.flashcards,

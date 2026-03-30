@@ -101,6 +101,7 @@ export default function Flashcards() {
                   type="button"
                   className="mb-4 rounded-md border border-border p-2 text-muted-foreground transition-colors hover:text-primary"
                   onClick={() => speak(currentCard.front, currentCard.language)}
+                  aria-label="Play flashcard pronunciation"
                 >
                   <Volume2 className="h-4 w-4" />
                 </button>

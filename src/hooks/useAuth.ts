@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { appClient } from "@/lib/app-client";
+import { AUTH_CHANGE_EVENT, appClient } from "@/lib/app-client";
 import type { AuthState, User, UserRole } from "@/types";
 
 const defaultAuthState: AuthState = {
@@ -60,34 +60,53 @@ export function useAuth(): AuthState {
   useEffect(() => {
     let mounted = true;
 
-    appClient.auth
-      .me()
-      .then((value) => {
-        if (!mounted) {
-          return;
-        }
+    const syncAuthState = () => {
+      appClient.auth
+        .me()
+        .then((value) => {
+          if (!mounted) {
+            return;
+          }
 
-        const user = toUser(value);
-        setState({
-          user,
-          loading: false,
-          isAdmin: user?.role === "admin",
-        });
-      })
-      .catch(() => {
-        if (!mounted) {
-          return;
-        }
+          const user = toUser(value);
+          setState({
+            user,
+            loading: false,
+            isAdmin: user?.role === "admin",
+          });
+        })
+        .catch(() => {
+          if (!mounted) {
+            return;
+          }
 
-        setState({
-          user: null,
-          loading: false,
-          isAdmin: false,
+          setState({
+            user: null,
+            loading: false,
+            isAdmin: false,
+          });
         });
-      });
+    };
+
+    syncAuthState();
+
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === "languageboost.demo-data.v1") {
+        syncAuthState();
+      }
+    };
+
+    const handleAuthChange = () => {
+      syncAuthState();
+    };
+
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener(AUTH_CHANGE_EVENT, handleAuthChange);
 
     return () => {
       mounted = false;
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener(AUTH_CHANGE_EVENT, handleAuthChange);
     };
   }, []);
 

@@ -140,7 +140,7 @@ export default function Landing() {
               {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
             <Button asChild variant="ghost" size="sm" className="text-sm">
-              <Link href="/dashboard">Sign in</Link>
+              <Link href="/auth/signin">Sign in</Link>
             </Button>
             <Button asChild size="sm" className="text-sm">
               <Link href="/dashboard">Start free <ArrowRight className="ml-1 h-3.5 w-3.5" /></Link>

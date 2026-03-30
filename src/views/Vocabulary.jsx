@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { appClient } from '@/src/lib/app-client';
-import { Search, Plus, Volume2, Check, Trash2, BookMarked, Loader2 } from 'lucide-react';
+import { Search, Plus, Check, Trash2, BookMarked, Bot, Loader2, Volume2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -14,6 +14,9 @@ export default function Vocabulary() {
   const [search, setSearch] = useState('');
   const [showAdd, setShowAdd] = useState(false);
   const [filling, setFilling] = useState(false);
+  const [aiExplainByWordId, setAiExplainByWordId] = useState({});
+  const [aiExplainErrorByWordId, setAiExplainErrorByWordId] = useState({});
+  const [aiExplainLoadingWordId, setAiExplainLoadingWordId] = useState(null);
   const [newWord, setNewWord] = useState({ word: '', language: '', definition: '', translation: '', example_sentence: '', phonetic: '' });
 
   const { data: words = [], isLoading } = useQuery({
@@ -57,6 +60,29 @@ export default function Vocabulary() {
 
   const speak = (text, lang) => {
     void speakText(text, lang || 'English');
+  };
+
+  const explainWord = async (word) => {
+    if (!word?.id || aiExplainLoadingWordId === word.id) {
+      return;
+    }
+
+    setAiExplainLoadingWordId(word.id);
+    setAiExplainErrorByWordId((prev) => ({ ...prev, [word.id]: '' }));
+
+    try {
+      const response = await appClient.integrations.Core.InvokeLLM({
+        prompt: `Explain the word "${word.word}" in ${word.language || 'English'} in 2-3 short sentences for a language learner. Include meaning and one short example sentence.`,
+      });
+
+      const explanation = typeof response === 'string' ? response.trim() : JSON.stringify(response);
+      setAiExplainByWordId((prev) => ({ ...prev, [word.id]: explanation }));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'AI explanation failed.';
+      setAiExplainErrorByWordId((prev) => ({ ...prev, [word.id]: message }));
+    } finally {
+      setAiExplainLoadingWordId(null);
+    }
   };
 
   const filtered = words.filter(w =>
@@ -118,25 +144,61 @@ export default function Vocabulary() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
           {filtered.map(word => (
-            <div key={word.id} className={`rounded-lg border bg-card p-4 group transition-colors ${word.is_mastered ? 'border-border/50 opacity-60' : 'border-border hover:border-foreground/20'}`}>
+            <div
+              key={word.id}
+              className={`rounded-lg border bg-card p-4 group transition-colors ${word.is_mastered ? 'border-border/50 opacity-60' : 'border-border hover:border-foreground/20'}`}
+            >
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-base font-medium text-foreground">{word.word}</p>
                   {word.phonetic && <p className="text-xs text-muted-foreground">{word.phonetic}</p>}
                 </div>
-                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button onClick={() => speak(word.word, word.language)} className="p-1 text-muted-foreground hover:text-primary">
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => speak(word.word, word.language)}
+                    className="p-1 text-muted-foreground hover:text-primary"
+                    aria-label={`Play pronunciation for ${word.word}`}
+                  >
                     <Volume2 className="w-3.5 h-3.5" />
                   </button>
-                  <button onClick={() => updateMutation.mutate({ id: word.id, data: { is_mastered: !word.is_mastered } })} className="p-1 text-muted-foreground hover:text-primary">
-                    <Check className="w-3.5 h-3.5" />
-                  </button>
-                  <button onClick={() => deleteMutation.mutate(word.id)} className="p-1 text-muted-foreground hover:text-destructive">
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
+                  <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={() => {
+                        void explainWord(word);
+                      }}
+                      className="p-1 text-muted-foreground hover:text-primary"
+                      aria-label={`Get AI explanation for ${word.word}`}
+                    >
+                      {aiExplainLoadingWordId === word.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Bot className="w-3.5 h-3.5" />}
+                    </button>
+                    <button
+                      onClick={() => {
+                        updateMutation.mutate({ id: word.id, data: { is_mastered: !word.is_mastered } });
+                      }}
+                      className="p-1 text-muted-foreground hover:text-primary"
+                    >
+                      <Check className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        deleteMutation.mutate(word.id);
+                      }}
+                      className="p-1 text-muted-foreground hover:text-destructive"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mt-1.5 line-clamp-1">{word.definition || word.translation}</p>
+              {aiExplainByWordId[word.id] && (
+                <div className="mt-3 rounded-md border border-border bg-background px-3 py-2 text-xs text-muted-foreground">
+                  {aiExplainByWordId[word.id]}
+                </div>
+              )}
+              {aiExplainErrorByWordId[word.id] && (
+                <p className="mt-2 text-xs text-destructive">{aiExplainErrorByWordId[word.id]}</p>
+              )}
               <div className="flex items-center gap-2 mt-2">
                 {word.language && <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{word.language}</span>}
                 {word.is_mastered && <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary">Mastered</span>}
