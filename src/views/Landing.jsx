@@ -312,6 +312,17 @@ export default function Landing() {
               </div>
             ))}
           </div>
+
+          <div className="mt-10 overflow-hidden rounded-2xl border border-border">
+            <Image
+              src="/images/landing/features-visual.svg"
+              alt="Feature overview: AI Conversation Tutor, Spaced Repetition, Streak and XP System, Lesson Library and Adaptive Quizzes"
+              width={1400}
+              height={800}
+              className="w-full"
+              sizes="(max-width: 1024px) 100vw, 90vw"
+            />
+          </div>
         </div>
       </section>
 
@@ -329,6 +340,17 @@ export default function Landing() {
                 <p className="text-sm leading-body text-muted-foreground">{step.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-2xl border border-border">
+            <Image
+              src="/images/landing/how-it-works.svg"
+              alt="How LangBoost works: choose your language, study with AI lessons, track progress and earn XP"
+              width={1400}
+              height={520}
+              className="w-full"
+              sizes="(max-width: 1024px) 100vw, 90vw"
+            />
           </div>
         </div>
       </section>
@@ -391,8 +413,18 @@ export default function Landing() {
         </div>
       </section>
 
-      <section id="testimonials" className="border-t border-border py-20 md:py-32">
-        <div className={shellClassName}>
+      <section id="testimonials" className="relative border-t border-border py-20 md:py-32">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <Image
+            src="/images/landing/testimonials-bg.svg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-60"
+            aria-hidden="true"
+          />
+        </div>
+        <div className={`${shellClassName} relative z-10`}>
           <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Reviews</p>
           <h2 className="font-syne text-3xl font-bold tracking-display text-foreground md:text-4xl">
             Loved by learners

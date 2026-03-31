@@ -1,0 +1,176 @@
+<svg width="1400" height="520" viewBox="0 0 1400 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hw-bg" x1="0" y1="0" x2="1400" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#070C09"/>
+      <stop offset="0.5" stop-color="#0C1410"/>
+      <stop offset="1" stop-color="#080B09"/>
+    </linearGradient>
+    <radialGradient id="hw-glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(233 260) scale(220 200)">
+      <stop stop-color="#D9F2A6" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#D9F2A6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="hw-glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 260) scale(200 180)">
+      <stop stop-color="#7FC6FF" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#7FC6FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="hw-glow3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1167 260) scale(220 200)">
+      <stop stop-color="#D9F2A6" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#D9F2A6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hw-accent" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+      <stop stop-color="#D8F19F"/>
+      <stop offset="1" stop-color="#93D4FF"/>
+    </linearGradient>
+    <filter id="hw-blur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="55"/>
+    </filter>
+    <pattern id="hw-grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="white" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="520" fill="url(#hw-bg)"/>
+  <rect width="1400" height="520" fill="url(#hw-grid)"/>
+
+  <!-- Glows -->
+  <g filter="url(#hw-blur)">
+    <ellipse cx="233" cy="260" rx="180" ry="160" fill="url(#hw-glow1)"/>
+    <ellipse cx="700" cy="260" rx="170" ry="150" fill="url(#hw-glow2)"/>
+    <ellipse cx="1167" cy="260" rx="180" ry="160" fill="url(#hw-glow3)"/>
+  </g>
+
+  <!-- Connector lines between cards -->
+  <!-- Line 1 to 2 -->
+  <line x1="420" y1="260" x2="516" y2="260" stroke="url(#hw-accent)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.4"/>
+  <!-- Arrow 1 -->
+  <path d="M508 255l8 5-8 5" stroke="#D8F19F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <!-- Line 2 to 3 -->
+  <line x1="884" y1="260" x2="980" y2="260" stroke="url(#hw-accent)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.4"/>
+  <!-- Arrow 2 -->
+  <path d="M972 255l8 5-8 5" stroke="#93D4FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+
+  <!-- ===== STEP 1 — Choose your language and level ===== -->
+  <rect x="60" y="80" width="360" height="360" rx="24" fill="#101916" stroke="white" stroke-opacity="0.1" stroke-width="1.5"/>
+
+  <!-- Step number -->
+  <text x="92" y="128" fill="#D8F19F" fill-opacity="0.25" font-family="Syne, Inter, Arial, sans-serif" font-size="52" font-weight="700">01</text>
+  <rect x="92" y="140" width="100" height="2" rx="1" fill="#D8F19F" fill-opacity="0.3"/>
+
+  <text x="92" y="172" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="16" font-weight="700">Choose your language</text>
+  <text x="92" y="190" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="16" font-weight="700">and level</text>
+  <text x="92" y="214" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="13">Pick from 40+ languages and set</text>
+  <text x="92" y="230" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="13">the level that matches you.</text>
+
+  <!-- Language selector UI mock -->
+  <rect x="92" y="252" width="296" height="44" rx="14" fill="#0A0F0C" stroke="#D8F19F" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="116" y="279" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="16" font-weight="600">🇪🇸  Spanish</text>
+  <path d="M364 268l-6 6-6-6" stroke="#D8F19F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Level selection -->
+  <g transform="translate(92, 312)">
+    <rect x="0" y="0" width="44" height="26" rx="8" fill="#1A2820" stroke="#D8F19F" stroke-opacity="0.15" stroke-width="1"/>
+    <text x="11" y="17" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12">A1</text>
+    <rect x="52" y="0" width="44" height="26" rx="8" fill="#1A2820" stroke="#D8F19F" stroke-opacity="0.15" stroke-width="1"/>
+    <text x="63" y="17" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12">A2</text>
+    <rect x="104" y="0" width="44" height="26" rx="8" fill="#D8F19F" fill-opacity="0.2" stroke="#D8F19F" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="115" y="17" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">B1</text>
+    <rect x="156" y="0" width="44" height="26" rx="8" fill="#1A2820" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="167" y="17" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12">B2</text>
+    <rect x="208" y="0" width="44" height="26" rx="8" fill="#1A2820" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="219" y="17" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12">C1</text>
+    <rect x="260" y="0" width="44" height="26" rx="8" fill="#1A2820" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="271" y="17" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12">C2</text>
+  </g>
+
+  <!-- Flag row -->
+  <g transform="translate(92, 356)">
+    <text x="0" y="0" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11" letter-spacing="1.5">40+ LANGUAGES</text>
+    <text x="0" y="28" font-family="Inter, Arial, sans-serif" font-size="22">🇪🇸 🇫🇷 🇩🇪 🇯🇵 🇧🇷 🇮🇹 🇰🇷</text>
+    <text x="0" y="56" font-family="Inter, Arial, sans-serif" font-size="22">🇨🇳 🇷🇺 🇳🇱 🇵🇱 🇸🇪 🇦🇪 +27</text>
+  </g>
+
+  <!-- ===== STEP 2 — Study with AI-guided lessons ===== -->
+  <rect x="516" y="80" width="368" height="360" rx="24" fill="#0F1714" stroke="white" stroke-opacity="0.1" stroke-width="1.5"/>
+
+  <text x="548" y="128" fill="#93D4FF" fill-opacity="0.25" font-family="Syne, Inter, Arial, sans-serif" font-size="52" font-weight="700">02</text>
+  <rect x="548" y="140" width="100" height="2" rx="1" fill="#93D4FF" fill-opacity="0.3"/>
+
+  <text x="548" y="172" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="16" font-weight="700">Study with AI-guided</text>
+  <text x="548" y="190" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="16" font-weight="700">lessons</text>
+  <text x="548" y="214" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="13">Sessions combining listening,</text>
+  <text x="548" y="230" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="13">speaking, and spaced review.</text>
+
+  <!-- Session type tabs -->
+  <g transform="translate(548, 252)">
+    <rect x="0" y="0" width="296" height="40" rx="12" fill="#0A0F0C" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <rect x="4" y="4" width="88" height="32" rx="10" fill="#D8F19F" fill-opacity="0.15"/>
+    <text x="18" y="24" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">Lesson</text>
+    <text x="106" y="24" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12">Flashcards</text>
+    <text x="206" y="24" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12">Conversation</text>
+  </g>
+
+  <!-- Lesson card preview -->
+  <rect x="548" y="310" width="296" height="100" rx="16" fill="#0C1712" stroke="#D8F19F" stroke-opacity="0.1" stroke-width="1"/>
+  <text x="572" y="338" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="10.5" letter-spacing="1.5">LISTENING DRILL · B1</text>
+  <text x="572" y="362" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="15" font-weight="600">At the airport — asking for</text>
+  <text x="572" y="380" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="15" font-weight="600">directions in Spanish</text>
+
+  <!-- Progress indicator -->
+  <g transform="translate(548, 424)">
+    <rect x="0" y="0" width="296" height="6" rx="3" fill="#1C2820"/>
+    <rect x="0" y="0" width="126" height="6" rx="3" fill="url(#hw-accent)"/>
+    <text x="0" y="22" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="11">Lesson 6 of 14 · B1 Spanish path</text>
+  </g>
+
+  <!-- ===== STEP 3 — Track progress and earn XP ===== -->
+  <rect x="980" y="80" width="360" height="360" rx="24" fill="#101916" stroke="white" stroke-opacity="0.1" stroke-width="1.5"/>
+
+  <text x="1012" y="128" fill="#D8F19F" fill-opacity="0.25" font-family="Syne, Inter, Arial, sans-serif" font-size="52" font-weight="700">03</text>
+  <rect x="1012" y="140" width="100" height="2" rx="1" fill="#D8F19F" fill-opacity="0.3"/>
+
+  <text x="1012" y="172" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="16" font-weight="700">Track progress and</text>
+  <text x="1012" y="190" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="16" font-weight="700">earn XP</text>
+  <text x="1012" y="214" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="13">Build streaks, unlock milestones,</text>
+  <text x="1012" y="230" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="13">and watch your progress grow.</text>
+
+  <!-- XP milestone row -->
+  <g transform="translate(1012, 255)">
+    <rect x="0" y="0" width="88" height="60" rx="14" fill="#0A0F0C" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="12" y="26" fill="#D8F19F" font-family="Syne, Inter, Arial, sans-serif" font-size="20" font-weight="700">2.4k</text>
+    <text x="8" y="46" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11">total XP</text>
+
+    <rect x="100" y="0" width="88" height="60" rx="14" fill="#0A0F0C" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="114" y="26" fill="#93D4FF" font-family="Syne, Inter, Arial, sans-serif" font-size="20" font-weight="700">21</text>
+    <text x="110" y="46" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11">day streak</text>
+
+    <rect x="200" y="0" width="88" height="60" rx="14" fill="#0A0F0C" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="214" y="26" fill="#E3F5BE" font-family="Syne, Inter, Arial, sans-serif" font-size="20" font-weight="700">6</text>
+    <text x="210" y="46" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11">milestones</text>
+  </g>
+
+  <!-- Achievement badges -->
+  <g transform="translate(1012, 336)">
+    <text x="0" y="0" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="10.5" letter-spacing="1.5">RECENT ACHIEVEMENTS</text>
+    <!-- Badge 1 -->
+    <rect x="0" y="14" width="140" height="46" rx="14" fill="#111916" stroke="#D8F19F" stroke-opacity="0.15" stroke-width="1"/>
+    <text x="14" y="38" font-family="Inter, Arial, sans-serif" font-size="18">🔥</text>
+    <text x="36" y="34" fill="#F4F8F3" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">3-Week Streak</text>
+    <text x="36" y="50" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="10.5">Consistency master</text>
+    <!-- Badge 2 -->
+    <rect x="152" y="14" width="136" height="46" rx="14" fill="#111916" stroke="#93D4FF" stroke-opacity="0.15" stroke-width="1"/>
+    <text x="166" y="38" font-family="Inter, Arial, sans-serif" font-size="18">⭐</text>
+    <text x="188" y="34" fill="#F4F8F3" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">500 Words</text>
+    <text x="188" y="50" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="10.5">Vocabulary hero</text>
+  </g>
+
+  <!-- Leaderboard snippet -->
+  <g transform="translate(1012, 404)">
+    <text x="0" y="0" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="10.5" letter-spacing="1.5">WEEKLY LEADERBOARD</text>
+    <rect x="0" y="10" width="288" height="32" rx="10" fill="#D8F19F" fill-opacity="0.08" stroke="#D8F19F" stroke-opacity="0.15" stroke-width="1"/>
+    <text x="12" y="30" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">#3  You  ·  2,380 XP this week</text>
+  </g>
+
+  <!-- Bottom accent bar -->
+  <rect x="60" y="458" width="1280" height="2" rx="1" fill="url(#hw-accent)" opacity="0.2"/>
+</svg>

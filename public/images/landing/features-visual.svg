@@ -1,0 +1,301 @@
+<svg width="1400" height="800" viewBox="0 0 1400 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fv-bg" x1="0" y1="0" x2="1400" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#070C09"/>
+      <stop offset="0.5" stop-color="#0D1512"/>
+      <stop offset="1" stop-color="#080B09"/>
+    </linearGradient>
+    <radialGradient id="fv-glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(280 160) scale(320 260)">
+      <stop stop-color="#D9F2A6" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#D9F2A6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fv-glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1120 640) scale(300 240)">
+      <stop stop-color="#7FC6FF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#7FC6FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fv-glow3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 400) scale(400 300)">
+      <stop stop-color="#D9F2A6" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#D9F2A6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fv-card1" x1="60" y1="60" x2="380" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111916"/>
+      <stop offset="1" stop-color="#0A0F0C"/>
+    </linearGradient>
+    <linearGradient id="fv-card2" x1="420" y1="60" x2="740" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F1714"/>
+      <stop offset="1" stop-color="#090E0B"/>
+    </linearGradient>
+    <linearGradient id="fv-card3" x1="780" y1="60" x2="1100" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111916"/>
+      <stop offset="1" stop-color="#0A0F0C"/>
+    </linearGradient>
+    <linearGradient id="fv-card4" x1="1140" y1="60" x2="1340" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F1714"/>
+      <stop offset="1" stop-color="#090E0B"/>
+    </linearGradient>
+    <linearGradient id="fv-accent" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+      <stop stop-color="#D8F19F"/>
+      <stop offset="1" stop-color="#93D4FF"/>
+    </linearGradient>
+    <linearGradient id="fv-accent-v" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#D8F19F"/>
+      <stop offset="1" stop-color="#93D4FF"/>
+    </linearGradient>
+    <filter id="fv-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+    <pattern id="fv-grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="white" stroke-opacity="0.04"/>
+    </pattern>
+    <clipPath id="fv-clip-card1">
+      <rect x="60" y="60" width="320" height="680" rx="24"/>
+    </clipPath>
+    <clipPath id="fv-clip-card2">
+      <rect x="420" y="60" width="320" height="680" rx="24"/>
+    </clipPath>
+    <clipPath id="fv-clip-card3">
+      <rect x="780" y="60" width="320" height="680" rx="24"/>
+    </clipPath>
+    <clipPath id="fv-clip-card4">
+      <rect x="1140" y="60" width="200" height="320" rx="20"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="800" fill="url(#fv-bg)"/>
+  <rect width="1400" height="800" fill="url(#fv-grid)"/>
+
+  <!-- Ambient glows -->
+  <g filter="url(#fv-blur)">
+    <ellipse cx="280" cy="160" rx="240" ry="190" fill="url(#fv-glow1)"/>
+    <ellipse cx="1120" cy="640" rx="220" ry="180" fill="url(#fv-glow2)"/>
+    <ellipse cx="700" cy="400" rx="300" ry="230" fill="url(#fv-glow3)"/>
+  </g>
+
+  <!-- === CARD 1 — AI Conversation Tutor === -->
+  <rect x="60" y="60" width="320" height="680" rx="24" fill="url(#fv-card1)"/>
+  <rect x="60.75" y="60.75" width="318.5" height="678.5" rx="23.25" stroke="white" stroke-opacity="0.1" stroke-width="1.5"/>
+
+  <!-- Icon bg -->
+  <rect x="92" y="100" width="48" height="48" rx="14" fill="#D8F19F" fill-opacity="0.12"/>
+  <!-- Brain icon (simplified paths) -->
+  <path d="M116 116c-4-2-8-1-10 2s-2 8 1 11c1.5 1.5 3 2 5 2" stroke="#D8F19F" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M116 116c4-2 8-1 10 2s2 8-1 11c-1.5 1.5-3 2-5 2" stroke="#D8F19F" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <circle cx="116" cy="136" r="2" fill="#D8F19F"/>
+  <path d="M108 130c-3 1-5 4-4 7" stroke="#D8F19F" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <path d="M124 130c3 1 5 4 4 7" stroke="#D8F19F" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
+  <text x="92" y="186" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="-0.2">AI Conversation</text>
+  <text x="92" y="205" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="-0.2">Tutor</text>
+  <text x="92" y="232" fill="#8E9792" font-family="Inter, Arial, sans-serif" font-size="13.5" xml:space="preserve">Practice real conversations
+with AI that corrects your
+grammar in real time.</text>
+
+  <!-- Chat bubbles -->
+  <rect x="92" y="290" width="230" height="52" rx="16" fill="#0C1712" stroke="#D8F19F" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="108" y="312" fill="#C8D4C1" font-family="Inter, Arial, sans-serif" font-size="12.5">You: "Je voudrais commander..."</text>
+  <text x="108" y="330" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11">Good sentence structure ✓</text>
+
+  <rect x="92" y="356" width="215" height="52" rx="16" fill="#111A15" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+  <text x="108" y="378" fill="#B0B8B3" font-family="Inter, Arial, sans-serif" font-size="12.5">AI: Try adding "s'il vous plaît"</text>
+  <text x="108" y="396" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11">Polite register suggestion</text>
+
+  <rect x="92" y="422" width="195" height="52" rx="16" fill="#0C1712" stroke="#D8F19F" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="108" y="444" fill="#C8D4C1" font-family="Inter, Arial, sans-serif" font-size="12.5">"...s'il vous plaît, merci"</text>
+  <text x="108" y="462" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="11">+12 XP · Perfect politeness</text>
+
+  <!-- Waveform -->
+  <g transform="translate(92,510)">
+    <rect x="0" y="15" width="6" height="20" rx="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <rect x="12" y="8" width="6" height="34" rx="3" fill="#D8F19F" fill-opacity="0.7"/>
+    <rect x="24" y="4" width="6" height="42" rx="3" fill="#D8F19F"/>
+    <rect x="36" y="10" width="6" height="30" rx="3" fill="#D8F19F" fill-opacity="0.8"/>
+    <rect x="48" y="18" width="6" height="14" rx="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <rect x="60" y="6" width="6" height="38" rx="3" fill="#D8F19F" fill-opacity="0.9"/>
+    <rect x="72" y="14" width="6" height="22" rx="3" fill="#D8F19F" fill-opacity="0.6"/>
+    <rect x="84" y="2" width="6" height="46" rx="3" fill="#D8F19F"/>
+    <rect x="96" y="12" width="6" height="26" rx="3" fill="#D8F19F" fill-opacity="0.7"/>
+    <rect x="108" y="20" width="6" height="10" rx="3" fill="#D8F19F" fill-opacity="0.4"/>
+    <text x="0" y="68" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11" letter-spacing="1.5">VOICE ACTIVE</text>
+  </g>
+
+  <!-- Score pill -->
+  <rect x="92" y="620" width="120" height="32" rx="10" fill="#D8F19F" fill-opacity="0.12"/>
+  <text x="108" y="641" fill="#D8F19F" font-family="Syne, Inter, Arial, sans-serif" font-size="13" font-weight="600">Accuracy 94%</text>
+
+  <!-- === CARD 2 — Spaced Repetition === -->
+  <rect x="420" y="60" width="320" height="680" rx="24" fill="url(#fv-card2)"/>
+  <rect x="420.75" y="60.75" width="318.5" height="678.5" rx="23.25" stroke="white" stroke-opacity="0.1" stroke-width="1.5"/>
+
+  <!-- Icon -->
+  <rect x="452" y="100" width="48" height="48" rx="14" fill="#7FC6FF" fill-opacity="0.12"/>
+  <path d="M464 132l6-6m0 0l6 6m-6-6v12" stroke="#7FC6FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M484 112l6 6m0 0l-6 6m6-6h-12" stroke="#7FC6FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="476" cy="124" r="10" stroke="#7FC6FF" stroke-width="1.5" fill="none"/>
+
+  <text x="452" y="186" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="-0.2">Spaced</text>
+  <text x="452" y="205" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="-0.2">Repetition</text>
+  <text x="452" y="232" fill="#8E9792" font-family="Inter, Arial, sans-serif" font-size="13.5" xml:space="preserve">SM-2 scheduling surfaces
+cards at the ideal moment
+for long-term retention.</text>
+
+  <!-- Flashcard stack -->
+  <rect x="452" y="286" width="256" height="148" rx="18" fill="#0A1210" stroke="white" stroke-opacity="0.06" stroke-width="1" transform="rotate(-3 452 286)"/>
+  <rect x="452" y="286" width="256" height="148" rx="18" fill="#0C1512" stroke="white" stroke-opacity="0.08" stroke-width="1" transform="rotate(-1 452 286)"/>
+  <rect x="452" y="286" width="256" height="148" rx="18" fill="#101B16" stroke="#D8F19F" stroke-opacity="0.12" stroke-width="1.5"/>
+  <text x="478" y="330" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="11" letter-spacing="2">VOCABULARY · FR</text>
+  <text x="478" y="364" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="32" font-weight="700">Fenêtre</text>
+  <text x="478" y="390" fill="#9BA39F" font-family="Inter, Arial, sans-serif" font-size="15">window · noun · intermediate</text>
+  <text x="478" y="418" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="12">Review in: 3 days ·  interval ×2.5</text>
+
+  <!-- Review curve -->
+  <g transform="translate(452, 458)">
+    <text x="0" y="12" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11" letter-spacing="1.5">RETENTION CURVE</text>
+    <path d="M0 70 Q40 40 80 35 Q130 28 180 26 Q220 25 256 24" stroke="url(#fv-accent)" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M0 70 Q40 60 80 70 Q130 82 180 88 Q220 92 256 94" stroke="white" stroke-opacity="0.15" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+    <circle cx="80" cy="35" r="5" fill="#D8F19F"/>
+    <circle cx="180" cy="26" r="5" fill="#93D4FF"/>
+    <text x="74" y="28" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="10">Day 3</text>
+    <text x="174" y="20" fill="#93D4FF" font-family="Inter, Arial, sans-serif" font-size="10">Day 9</text>
+  </g>
+
+  <!-- Stats row -->
+  <g transform="translate(452, 580)">
+    <rect x="0" y="0" width="76" height="60" rx="14" fill="#0C1612" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="14" y="22" fill="#D8F19F" font-family="Syne, Inter, Arial, sans-serif" font-size="20" font-weight="700">340</text>
+    <text x="8" y="42" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="10.5">cards due</text>
+
+    <rect x="90" y="0" width="76" height="60" rx="14" fill="#0C1612" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="104" y="22" fill="#93D4FF" font-family="Syne, Inter, Arial, sans-serif" font-size="20" font-weight="700">91%</text>
+    <text x="98" y="42" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="10.5">retention</text>
+
+    <rect x="180" y="0" width="76" height="60" rx="14" fill="#0C1612" stroke="white" stroke-opacity="0.07" stroke-width="1"/>
+    <text x="194" y="22" fill="#E3F5BE" font-family="Syne, Inter, Arial, sans-serif" font-size="20" font-weight="700">2.4k</text>
+    <text x="191" y="42" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="10.5">vocab known</text>
+  </g>
+
+  <!-- === CARD 3 — Streak & XP === -->
+  <rect x="780" y="60" width="320" height="680" rx="24" fill="url(#fv-card3)"/>
+  <rect x="780.75" y="60.75" width="318.5" height="678.5" rx="23.25" stroke="white" stroke-opacity="0.1" stroke-width="1.5"/>
+
+  <!-- Flame icon -->
+  <rect x="812" y="100" width="48" height="48" rx="14" fill="#FFAA44" fill-opacity="0.12"/>
+  <path d="M836 108c0 0 4 5 4 10c0 3-2 5-4 5s-4-2-4-5c0-2 1-4 2-5" stroke="#FFAA44" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M836 118c-4 1-7 4-7 9c0 5 3 8 7 8s7-3 7-8c0-4-3-8-7-9" stroke="#FFAA44" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+
+  <text x="812" y="186" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="-0.2">Streak &amp; XP</text>
+  <text x="812" y="205" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="-0.2">System</text>
+  <text x="812" y="232" fill="#8E9792" font-family="Inter, Arial, sans-serif" font-size="13.5" xml:space="preserve">Daily goals, streak tracking,
+and XP rewards keep
+the habit alive.</text>
+
+  <!-- Streak ring -->
+  <g transform="translate(900, 376)">
+    <circle cx="0" cy="0" r="80" stroke="#1C2820" stroke-width="12" fill="none"/>
+    <circle cx="0" cy="0" r="80" stroke="url(#fv-accent)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="402" stroke-dashoffset="100" transform="rotate(-90)"/>
+    <text x="0" y="-8" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="40" font-weight="700" text-anchor="middle">21</text>
+    <text x="0" y="16" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="13" text-anchor="middle" letter-spacing="1.5">DAY STREAK</text>
+    <text x="0" y="36" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="11" text-anchor="middle">Personal best: 34</text>
+  </g>
+
+  <!-- XP bar -->
+  <g transform="translate(812, 500)">
+    <text x="0" y="0" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="11" letter-spacing="1.5">TODAY'S XP</text>
+    <rect x="0" y="12" width="256" height="10" rx="5" fill="#1C2820"/>
+    <rect x="0" y="12" width="178" height="10" rx="5" fill="url(#fv-accent)"/>
+    <text x="0" y="40" fill="#D8F19F" font-family="Syne, Inter, Arial, sans-serif" font-size="22" font-weight="700">+340 XP</text>
+    <text x="148" y="40" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="13">/ 500 goal</text>
+  </g>
+
+  <!-- Weekly mini-bars -->
+  <g transform="translate(812, 570)">
+    <text x="0" y="0" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="11" letter-spacing="1">WEEK</text>
+    <rect x="0" y="12" width="30" height="44" rx="8" fill="#1C2820"/>
+    <rect x="0" y="12" width="30" height="34" rx="8" fill="#D8F19F" fill-opacity="0.6" transform="translate(0, 10)"/>
+    <rect x="38" y="12" width="30" height="44" rx="8" fill="#1C2820"/>
+    <rect x="38" y="12" width="30" height="40" rx="8" fill="#D8F19F" fill-opacity="0.75" transform="translate(0, 4)"/>
+    <rect x="76" y="12" width="30" height="44" rx="8" fill="#1C2820"/>
+    <rect x="76" y="12" width="30" height="26" rx="8" fill="#D8F19F" fill-opacity="0.5" transform="translate(0, 18)"/>
+    <rect x="114" y="12" width="30" height="44" rx="8" fill="#1C2820"/>
+    <rect x="114" y="12" width="30" height="44" rx="8" fill="#D8F19F" fill-opacity="0.9"/>
+    <rect x="152" y="12" width="30" height="44" rx="8" fill="#1C2820"/>
+    <rect x="152" y="12" width="30" height="38" rx="8" fill="#D8F19F" fill-opacity="0.7" transform="translate(0, 6)"/>
+    <rect x="190" y="12" width="30" height="44" rx="8" fill="#1C2820"/>
+    <rect x="190" y="12" width="30" height="20" rx="8" fill="#7FC6FF" fill-opacity="0.5" transform="translate(0, 24)"/>
+    <rect x="228" y="12" width="28" height="44" rx="8" fill="#D8F19F" fill-opacity="0.12" stroke="#D8F19F" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="236" y="46" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="11" text-anchor="middle">today</text>
+    <text x="0" y="72" fill="#5A6260" font-family="Inter, Arial, sans-serif" font-size="10">M</text>
+    <text x="42" y="72" fill="#5A6260" font-family="Inter, Arial, sans-serif" font-size="10">T</text>
+    <text x="80" y="72" fill="#5A6260" font-family="Inter, Arial, sans-serif" font-size="10">W</text>
+    <text x="118" y="72" fill="#5A6260" font-family="Inter, Arial, sans-serif" font-size="10">T</text>
+    <text x="156" y="72" fill="#5A6260" font-family="Inter, Arial, sans-serif" font-size="10">F</text>
+    <text x="194" y="72" fill="#5A6260" font-family="Inter, Arial, sans-serif" font-size="10">S</text>
+    <text x="228" y="72" fill="#5A6260" font-family="Inter, Arial, sans-serif" font-size="10">S</text>
+  </g>
+
+  <!-- === CARD 4a — Lesson Library (right top) === -->
+  <rect x="1140" y="60" width="200" height="318" rx="20" fill="#0F1714" stroke="white" stroke-opacity="0.1" stroke-width="1.5"/>
+  <!-- Book icon -->
+  <rect x="1162" y="92" width="40" height="40" rx="12" fill="#D8F19F" fill-opacity="0.12"/>
+  <path d="M1172 104h-2a2 2 0 00-2 2v16h10v-16a2 2 0 00-2-2h-4z" stroke="#D8F19F" stroke-width="1.5" fill="none"/>
+  <path d="M1180 104h4a2 2 0 012 2v16h-10v-16" stroke="#D8F19F" stroke-width="1.5" fill="none"/>
+  <line x1="1168" y1="122" x2="1168" y2="122" stroke="#D8F19F" stroke-width="0"/>
+  <text x="1162" y="158" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="15" font-weight="700">Lesson Library</text>
+  <text x="1162" y="176" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12" xml:space="preserve">CEFR A1–C2 paths
+across 40+ languages.</text>
+
+  <!-- Level badges -->
+  <g transform="translate(1162, 200)">
+    <rect x="0" y="0" width="38" height="22" rx="7" fill="#D8F19F" fill-opacity="0.15"/>
+    <text x="8" y="15" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600">A1</text>
+    <rect x="46" y="0" width="38" height="22" rx="7" fill="#D8F19F" fill-opacity="0.18"/>
+    <text x="54" y="15" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600">A2</text>
+    <rect x="92" y="0" width="38" height="22" rx="7" fill="#93D4FF" fill-opacity="0.18"/>
+    <text x="100" y="15" fill="#93D4FF" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600">B1</text>
+    <rect x="0" y="30" width="38" height="22" rx="7" fill="#93D4FF" fill-opacity="0.2"/>
+    <text x="8" y="45" fill="#93D4FF" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600">B2</text>
+    <rect x="46" y="30" width="38" height="22" rx="7" fill="#D8F19F" fill-opacity="0.22"/>
+    <text x="54" y="45" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600">C1</text>
+    <rect x="92" y="30" width="38" height="22" rx="7" fill="#D8F19F" fill-opacity="0.25"/>
+    <text x="100" y="45" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600">C2</text>
+  </g>
+
+  <!-- Progress bar -->
+  <g transform="translate(1162, 290)">
+    <text x="0" y="0" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="10.5" letter-spacing="1">LESSON 14 / 48</text>
+    <rect x="0" y="8" width="156" height="6" rx="3" fill="#1C2820"/>
+    <rect x="0" y="8" width="46" height="6" rx="3" fill="url(#fv-accent)"/>
+  </g>
+
+  <!-- CARD 4b — Adaptive Quizzes (right bottom) -->
+  <rect x="1140" y="422" width="200" height="318" rx="20" fill="#0E1713" stroke="white" stroke-opacity="0.1" stroke-width="1.5"/>
+  <!-- Quiz icon -->
+  <rect x="1162" y="454" width="40" height="40" rx="12" fill="#93D4FF" fill-opacity="0.12"/>
+  <path d="M1176 466a4 4 0 014 4v2a4 4 0 01-4 4h-4a4 4 0 01-4-4v-2a4 4 0 014-4h4z" stroke="#93D4FF" stroke-width="1.5" fill="none"/>
+  <path d="M1176 480v4m0 2v1" stroke="#93D4FF" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="1162" y="520" fill="#F4F8F3" font-family="Syne, Inter, Arial, sans-serif" font-size="15" font-weight="700">Adaptive Quizzes</text>
+  <text x="1162" y="538" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12" xml:space="preserve">5 quiz types, instant
+feedback, timed modes.</text>
+
+  <!-- Quiz types pills -->
+  <g transform="translate(1162, 558)">
+    <rect x="0" y="0" width="70" height="22" rx="7" fill="#93D4FF" fill-opacity="0.12"/>
+    <text x="6" y="15" fill="#93D4FF" font-family="Inter, Arial, sans-serif" font-size="11">Multiple choice</text>
+    <rect x="0" y="28" width="55" height="22" rx="7" fill="#93D4FF" fill-opacity="0.10"/>
+    <text x="6" y="43" fill="#7FC6FF" font-family="Inter, Arial, sans-serif" font-size="11">Fill in blank</text>
+    <rect x="64" y="28" width="50" height="22" rx="7" fill="#D8F19F" fill-opacity="0.10"/>
+    <text x="70" y="43" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="11">Translate</text>
+    <rect x="0" y="56" width="62" height="22" rx="7" fill="#D8F19F" fill-opacity="0.10"/>
+    <text x="6" y="71" fill="#D8F19F" font-family="Inter, Arial, sans-serif" font-size="11">Listening drill</text>
+  </g>
+
+  <!-- Score breakdown -->
+  <g transform="translate(1162, 660)">
+    <text x="0" y="0" fill="#6E7870" font-family="Inter, Arial, sans-serif" font-size="10.5" letter-spacing="1">LAST SCORE</text>
+    <text x="0" y="28" fill="#D8F19F" font-family="Syne, Inter, Arial, sans-serif" font-size="28" font-weight="700">87%</text>
+    <text x="56" y="28" fill="#7A8782" font-family="Inter, Arial, sans-serif" font-size="12">· 26/30 correct</text>
+  </g>
+
+  <!-- Divider accent line -->
+  <rect x="60" y="748" width="1280" height="2" rx="1" fill="url(#fv-accent)" opacity="0.25"/>
+</svg>

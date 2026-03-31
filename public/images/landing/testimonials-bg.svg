@@ -1,0 +1,95 @@
+<svg width="1400" height="400" viewBox="0 0 1400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tb-bg" x1="0" y1="0" x2="1400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#070C09"/>
+      <stop offset="0.5" stop-color="#0B1310"/>
+      <stop offset="1" stop-color="#07090A"/>
+    </linearGradient>
+    <radialGradient id="tb-glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 200) scale(280 200)">
+      <stop stop-color="#D9F2A6" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#D9F2A6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tb-glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1200 200) scale(260 180)">
+      <stop stop-color="#7FC6FF" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#7FC6FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tb-glow3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 200) scale(220 160)">
+      <stop stop-color="#D9F2A6" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#D9F2A6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tb-accent" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+      <stop stop-color="#D8F19F"/>
+      <stop offset="1" stop-color="#93D4FF"/>
+    </linearGradient>
+    <filter id="tb-blur" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+    <pattern id="tb-dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="1" fill="white" fill-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="400" fill="url(#tb-bg)"/>
+  <rect width="1400" height="400" fill="url(#tb-dots)"/>
+
+  <!-- Glows -->
+  <g filter="url(#tb-blur)">
+    <ellipse cx="200" cy="200" rx="220" ry="160" fill="url(#tb-glow1)"/>
+    <ellipse cx="1200" cy="200" rx="200" ry="150" fill="url(#tb-glow2)"/>
+    <ellipse cx="700" cy="200" rx="180" ry="130" fill="url(#tb-glow3)"/>
+  </g>
+
+  <!-- Decorative large quote marks -->
+  <g aria-hidden="true" role="presentation">
+    <text x="40" y="180" fill="#D8F19F" fill-opacity="0.06" font-family="Syne, Georgia, serif" font-size="220" font-weight="700">&quot;</text>
+    <text x="1100" y="340" fill="#93D4FF" fill-opacity="0.05" font-family="Syne, Georgia, serif" font-size="220" font-weight="700">&quot;</text>
+  </g>
+
+  <!-- Flowing arc lines (decorative) -->
+  <path d="M0 280 Q350 180 700 220 Q1050 260 1400 180" stroke="#D8F19F" stroke-opacity="0.06" stroke-width="1.5" fill="none"/>
+  <path d="M0 320 Q350 220 700 260 Q1050 300 1400 220" stroke="#7FC6FF" stroke-opacity="0.05" stroke-width="1.5" fill="none"/>
+  <path d="M0 100 Q350 60 700 80 Q1050 100 1400 60" stroke="white" stroke-opacity="0.04" stroke-width="1" fill="none"/>
+
+  <!-- Star ratings decorative group 1 (left card area) -->
+  <g transform="translate(120, 60)">
+    <circle cx="0" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <circle cx="20" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <circle cx="40" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <circle cx="60" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <circle cx="80" cy="0" r="3" fill="#D8F19F" fill-opacity="0.25"/>
+  </g>
+
+  <!-- Star ratings decorative group 2 (center) -->
+  <g transform="translate(620, 50)">
+    <circle cx="0" cy="0" r="3" fill="#D8F19F" fill-opacity="0.45"/>
+    <circle cx="20" cy="0" r="3" fill="#D8F19F" fill-opacity="0.45"/>
+    <circle cx="40" cy="0" r="3" fill="#D8F19F" fill-opacity="0.45"/>
+    <circle cx="60" cy="0" r="3" fill="#D8F19F" fill-opacity="0.45"/>
+    <circle cx="80" cy="0" r="3" fill="#D8F19F" fill-opacity="0.45"/>
+  </g>
+
+  <!-- Star ratings decorative group 3 (right) -->
+  <g transform="translate(1120, 60)">
+    <circle cx="0" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <circle cx="20" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <circle cx="40" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <circle cx="60" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+    <circle cx="80" cy="0" r="3" fill="#D8F19F" fill-opacity="0.5"/>
+  </g>
+
+  <!-- Avatar placeholder rings (left card) -->
+  <circle cx="160" cy="330" r="20" fill="#111916" stroke="#D8F19F" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="150" y="336" fill="#D8F19F" fill-opacity="0.6" font-family="Inter, Arial, sans-serif" font-size="14">MS</text>
+
+  <!-- Avatar placeholder rings (center card) -->
+  <circle cx="700" cy="330" r="20" fill="#0F1714" stroke="#93D4FF" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="691" y="336" fill="#93D4FF" fill-opacity="0.6" font-family="Inter, Arial, sans-serif" font-size="14">JL</text>
+
+  <!-- Avatar placeholder rings (right card) -->
+  <circle cx="1240" cy="330" r="20" fill="#111916" stroke="#D8F19F" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="1231" y="336" fill="#D8F19F" fill-opacity="0.6" font-family="Inter, Arial, sans-serif" font-size="14">YT</text>
+
+  <!-- Bottom accent gradient bar -->
+  <rect x="0" y="396" width="1400" height="4" rx="2" fill="url(#tb-accent)" opacity="0.2"/>
+</svg>
