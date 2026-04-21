@@ -45,6 +45,19 @@ const makeSession = (userId) => ({
   expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
 });
 
+const hashPassword = (password) => {
+  const raw = String(password || "");
+  if (typeof btoa === "function") {
+    try {
+      return btoa(raw);
+    } catch {
+      return DEFAULT_DEMO_PASSWORD_HASH;
+    }
+  }
+
+  return DEFAULT_DEMO_PASSWORD_HASH;
+};
+
 const readStore = () => {
   if (!hasWindow()) {
     return clone(memoryStore);
@@ -339,7 +352,7 @@ export const appClient = {
     async signIn({ email, password }) {
       const store = readStore();
       const normalizedEmail = String(email || "").trim().toLowerCase();
-      const passwordHash = typeof btoa === "function" ? btoa(password) : DEFAULT_DEMO_PASSWORD_HASH;
+      const passwordHash = hashPassword(password);
       const user = store.users.find(
         (candidate) =>
           candidate?.email?.toLowerCase() === normalizedEmail &&
@@ -352,6 +365,52 @@ export const appClient = {
 
       store.currentUser = cloneUser(user);
       store.session = makeSession(user.id);
+      writeStore(store);
+      notifyAuthChange();
+      return clone(store.currentUser);
+    },
+
+    async signUp({ fullName, email, password }) {
+      const store = readStore();
+      const normalizedEmail = String(email || "").trim().toLowerCase();
+      const normalizedName = String(fullName || "").trim();
+
+      if (!normalizedEmail || !password) {
+        return null;
+      }
+
+      const userExists = store.users.some(
+        (candidate) => candidate?.email?.toLowerCase() === normalizedEmail
+      );
+
+      if (userExists) {
+        return null;
+      }
+
+      const timestamp = new Date().toISOString();
+      const displayName = normalizedName || normalizedEmail.split("@")[0] || "Learner";
+      const nextUser = cloneUser({
+        id: makeId("User"),
+        email: normalizedEmail,
+        name: displayName,
+        full_name: displayName,
+        passwordHash: hashPassword(password),
+        role: "user",
+        bio: "",
+        native_language: "English",
+        target_languages: "",
+        streak_count: 0,
+        longest_streak: 0,
+        total_xp: 0,
+        current_level: 1,
+        daily_goal_minutes: 15,
+        created_date: timestamp,
+        updated_date: timestamp,
+      });
+
+      store.users = [nextUser, ...(store.users || [])];
+      store.currentUser = cloneUser(nextUser);
+      store.session = makeSession(nextUser.id);
       writeStore(store);
       notifyAuthChange();
       return clone(store.currentUser);

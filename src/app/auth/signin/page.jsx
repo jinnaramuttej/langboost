@@ -13,13 +13,16 @@ import { appClient } from "@/lib/app-client";
 import { useAuth } from "@/hooks/useAuth";
 
 const initialForm = {
+  fullName: "",
   email: "",
   password: "",
+  confirmPassword: "",
 };
 
 export default function SignInPage() {
   const router = useRouter();
   const { user, loading } = useAuth();
+  const [mode, setMode] = useState("signin");
   const [form, setForm] = useState(initialForm);
   const [submitting, setSubmitting] = useState(false);
 
@@ -40,6 +43,36 @@ export default function SignInPage() {
     }
 
     setSubmitting(true);
+    if (mode === "signup") {
+      if (form.password.length < 6) {
+        toast.error("Password must be at least 6 characters");
+        setSubmitting(false);
+        return;
+      }
+
+      if (form.password !== form.confirmPassword) {
+        toast.error("Passwords do not match");
+        setSubmitting(false);
+        return;
+      }
+
+      const createdUser = await appClient.auth.signUp({
+        fullName: form.fullName,
+        email: form.email,
+        password: form.password,
+      });
+
+      if (!createdUser) {
+        toast.error("Account already exists for this email");
+        setSubmitting(false);
+        return;
+      }
+
+      toast.success("Account created. Welcome to LanguageBoost!");
+      router.replace("/dashboard");
+      return;
+    }
+
     const signedInUser = await appClient.auth.signIn({
       email: form.email,
       password: form.password,
@@ -94,12 +127,32 @@ export default function SignInPage() {
               <Link href="/" className="font-syne text-2xl font-bold tracking-display text-foreground lg:hidden">
                 LanguageBoost
               </Link>
-              <h1 className="mt-6 font-syne text-3xl font-bold text-foreground">Sign in</h1>
+              <h1 className="mt-6 font-syne text-3xl font-bold text-foreground">
+                {mode === "signin" ? "Sign in" : "Create account"}
+              </h1>
               <p className="mt-2 text-sm text-muted-foreground">
-                Use your LangBoost account to continue learning.
+                {mode === "signin"
+                  ? "Use your LangBoost account to continue learning."
+                  : "Create your account and jump straight into the app."}
               </p>
 
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+                {mode === "signup" ? (
+                  <div className="space-y-2">
+                    <Label htmlFor="fullName">Full name</Label>
+                    <Input
+                      id="fullName"
+                      type="text"
+                      autoComplete="name"
+                      value={form.fullName}
+                      onChange={handleChange("fullName")}
+                      placeholder="Alex Carter"
+                      className="h-11 bg-background/70"
+                      required
+                    />
+                  </div>
+                ) : null}
+
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
@@ -128,20 +181,50 @@ export default function SignInPage() {
                   />
                 </div>
 
+                {mode === "signup" ? (
+                  <div className="space-y-2">
+                    <Label htmlFor="confirmPassword">Confirm password</Label>
+                    <Input
+                      id="confirmPassword"
+                      type="password"
+                      autoComplete="new-password"
+                      value={form.confirmPassword}
+                      onChange={handleChange("confirmPassword")}
+                      placeholder="Re-enter your password"
+                      className="h-11 bg-background/70"
+                      required
+                    />
+                  </div>
+                ) : null}
+
                 <Button type="submit" className="h-11 w-full text-sm" disabled={submitting}>
                   {submitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Signing in...
+                      {mode === "signin" ? "Signing in..." : "Creating account..."}
                     </>
                   ) : (
                     <>
                       <LogIn className="mr-2 h-4 w-4" />
-                      Sign in
+                      {mode === "signin" ? "Sign in" : "Create account"}
                     </>
                   )}
                 </Button>
               </form>
+
+              <p className="mt-5 text-sm text-muted-foreground">
+                {mode === "signin" ? "New here?" : "Already have an account?"}{" "}
+                <button
+                  type="button"
+                  className="text-primary hover:underline"
+                  onClick={() => {
+                    setMode((current) => (current === "signin" ? "signup" : "signin"));
+                    setForm(initialForm);
+                  }}
+                >
+                  {mode === "signin" ? "Sign up here" : "Sign in here"}
+                </button>
+              </p>
 
               <p className="mt-6 text-sm text-muted-foreground">
                 Need a fresh start?{" "}

@@ -36,6 +36,10 @@ export default function Settings() {
     }).catch(() => {});
   }, []);
 
+  const joinedOn = user?.created_date
+    ? new Date(user.created_date).toLocaleDateString()
+    : 'Recently';
+
   const handleSave = async () => {
     setSaving(true);
     await appClient.auth.updateMe({
@@ -60,6 +64,14 @@ export default function Settings() {
             <Label className="text-xs text-muted-foreground">Display name</Label>
             <Input value={form.display_name} disabled className="mt-1 opacity-60" />
             <p className="text-[10px] text-muted-foreground mt-1">Display name cannot be changed here</p>
+          </div>
+          <div>
+            <Label className="text-xs text-muted-foreground">Email</Label>
+            <Input value={user?.email || ''} disabled className="mt-1 opacity-60" />
+          </div>
+          <div>
+            <Label className="text-xs text-muted-foreground">Member since</Label>
+            <Input value={joinedOn} disabled className="mt-1 opacity-60" />
           </div>
           <div>
             <Label className="text-xs text-muted-foreground">Bio</Label>
